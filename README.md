@@ -14,14 +14,16 @@
 这个插件把这两件都换掉：
 
 - **定时器活在 harness 进程里**。宿主没了它跟着没，宿主回来它自动回来。插件被卸载时 `ctx.effect` 会把 timer 清掉——成对的「起来了／停了」比单边的「起来了」可信。
-- **判在场不看 mtime，看正文**。解压会话日志，逐条读 `user/message`，只认 `source.kind === 'plugin:dsh-onebot'` 且正文带 `<user_message qq=` 的记录。定时提醒、自动任务也会写 `user/message`，但它们不算「他说了话」。
+- **判在场不看 mtime，看正文**。解压会话日志，逐条读 `user/message`，只认**真的是他打的**那几条：老桥（`dsh-onebot`）认 `source.kind === 'plugin:dsh-onebot'` 且正文带 `<user_message qq=`，新桥（`dsh-qq-link`）认 `source.kind === 'qq'`。定时提醒、自动任务也会写 `user/message`，但它们不算「他说了话」。
 - **状态落盘**。写了多少拍、下一次什么时候写、最后一行是什么，都在 `state.json` 里，重启接着数。
 
 ## 装
 
+仓库：<https://github.com/lanxi-tide/dsh-heartbeat>（独立仓库，`package.json` 在根上，可以直接当插件装）
+
 ```powershell
 # 桌面版 profile（%USERPROFILE%\.dsh\profiles\desktop）
-# 1) 把包放进 node_modules
+# 1) 把包放进 node_modules（clone 过去，或建个 junction 指过去）
 # 2) profile 的 package.json 里 dependencies 加一条，bundles 里加 'dsh-heartbeat'
 # 3) 重启 DSH
 ```
