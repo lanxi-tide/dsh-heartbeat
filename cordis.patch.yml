@@ -1,0 +1,4 @@
+# dsh-heartbeat 补丁：把一个「心跳」行插进 profile 的加载栈。
+- insert:
+    - id: heartbeat
+      name: 'dsh-heartbeat'
