@@ -1,6 +1,6 @@
 {
   "name": "dsh-heartbeat",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "平时：把心跳放进 harness 进程里。v0.3 加「想说话」（到点叫醒，说不说由我定），v0.4 把「自我思考」并回来——出题、一轮轮想、想不够不许收。",
   "keywords": ["dsh", "dsh-plugin", "deepseek-harness", "heartbeat", "presence"],
   "type": "module",
